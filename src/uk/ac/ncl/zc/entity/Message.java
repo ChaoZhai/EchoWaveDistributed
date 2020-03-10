@@ -1,0 +1,125 @@
+package uk.ac.ncl.zc.entity;
+
+/**
+ * @ClassName Message
+ * @Description: TODO
+ * @Author BENY
+ * @Date 2019/10/17
+ * @Version V1.0
+ **/
+public class Message {
+
+    private WaveNode sender;
+    private MessageType messagetype;
+    private WaveNode electionNode;
+
+    /**
+     * @Title Constructor for Message
+     * @Description
+     * @param sender
+     * @param messagetype
+     * @param electionNode
+     */
+    public Message(WaveNode sender, MessageType messagetype, WaveNode electionNode) {
+        super();
+        this.sender = sender;
+        this.messagetype = messagetype;
+        this.electionNode = electionNode;
+    }
+
+    /**
+     * @Title Constructor for WAVE_MESSAGE
+     * @Description
+     * @param sender
+     */
+    public Message(WaveNode sender) {
+        this(sender, MessageType.WAVE_MESSAGE, null);
+    }
+
+
+    /**
+     * @Title Constructor for ELECTION_WAKEUP_MESSAGE
+     * @Description
+     * @param sender
+     * @param messageType
+     */
+    public Message(WaveNode sender, MessageType messageType) {
+        this(sender, messageType, null);
+    }
+
+    /**
+     * @Title Constructor for ELECTION_TOKEN_MESSAGE
+     * @Description
+     * @param sender
+     * @param electionNode
+     */
+    public Message(WaveNode sender, WaveNode electionNode) {
+        this(sender, MessageType.ELECTION_TOKEN_MESSAGE, electionNode);
+    }
+
+    /**
+     * @Title toString
+     * @Description
+     * @return
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        return "Message [sender=" + sender + ", messagetype=" + messagetype + ", electionNode=" + electionNode + "]";
+    }
+
+    // Overriding equals() to compare two Message objects
+    @Override
+    public boolean equals(Object o) {
+
+        // If the object is compared with itself then return true
+        if (o == this) {
+            return true;
+        }
+
+        /*
+         * Check if o is an instance of Message or not "null instanceof [type]" also
+         * returns false
+         */
+        if (!(o instanceof Message)) {
+            return false;
+        }
+
+        // typecast o to Message so that we can compare data members
+        Message msg = (Message) o;
+
+        // Compare the data members and return accordingly
+        return this.sender == msg.sender && this.electionNode == msg.electionNode
+                && this.messagetype == msg.messagetype;
+    }
+
+
+    /**
+     * Return the sender.
+     *
+     * @return sender
+     */
+    public WaveNode getSender() {
+        return sender;
+    }
+
+
+    /**
+     * Return the messagetype.
+     *
+     * @return messagetype
+     */
+    public MessageType getMessagetype() {
+        return messagetype;
+    }
+
+
+    /**
+     * Return the electionNode.
+     *
+     * @return electionNode
+     */
+    public WaveNode getElectionNode() {
+        return electionNode;
+    }
+}
